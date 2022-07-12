@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Information Page</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
@@ -20,21 +21,22 @@
 
         <section class="contact_library">
             <h3>Info</h3>
-            <!-- <form action="#"> -->
+            <form action="" method="POST">
+                {%  csrf_token %}
                 <div class="contact_form">
-                    <input type="text" placeholder="First Name">
+                    <input type="text" value="{{contact.first_name | title}}" name="firstName">
                 </div>
 
                 <div class="contact_form">
-                    <input type="text" placeholder="Last Name">
+                    <input type="text" value="{{contact.last_name |title}}" name="lastName">
                 </div>
 
                 <div class="contact_form">
-                    <input type="email" placeholder="Email">
+                    <input type="email" value="{{contact.email}}" name="email">
                 </div>
 
                 <div class="contact_form">
-                    <input type="tel" placeholder="Phone Number">
+                    <input type="tel" value="{{contact.phone_number}}" name="phoneNumber">
                 </div>
 
                 <h3>Role</h3>
@@ -46,11 +48,11 @@
                     <hr>
                     <label for="choice2">Admin - Can delete members</label>
                     <input type="radio" id="choice2" name="role" >
-            <!-- </form> -->
                 <hr>
                 <br>
                 <input type="button" class="delete_button" value="Delete">
-                <input type="button" class="save_button" value="Save">
+                <input type="submit" class="save_button" value="Save">
+            </form>
 
             </div>
 

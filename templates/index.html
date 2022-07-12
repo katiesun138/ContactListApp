@@ -24,48 +24,19 @@
         <hr>
         <section class="contact_library">
             <ul class="contact_list">
-                <a href="#">
+                {% for contact in contacts reversed %}
+                <a href="{% url 'edit-contact' contact.id %}">
                     <div class="contact_section">
                         <li class="contact_single">
-                            <h3 class="contact_name">John Doe</h3>
-                            <p class="contact_number">778-888-0000</p>
-                            <p class="contact_email">jdoe@instawork.com</p>
+                            <h3 class="contact_name">{{contact.first_name | title}} {{contact.last_name | title}}</h3>
+                            <p class="contact_number">{{contact.phone_number}}</p>
+                            <p class="contact_email">{{contact.email}}</p>
                         </li>
                     </div>
                 </a>
+                 
                  <hr>
-                <a href="#">
-                    <div class="contact_section">
-                    <li class="contact_single">
-                        <h3 class="contact_name">Hayley Farm</h3>
-                        <p class="contact_number">778-428-1230</p>
-                        <p class="contact_email">hfarm@instawork.com</p>
-                    </li>
-                    </div>
-                </a>
-                 <hr>
-                <a href="#">
-                    <div class="contact_section">
-                        <li class="contact_single">
-                            <h3 class="contact_name">Jinny Fan</h3>
-                            <p class="contact_number">604-238-1562</p>
-                            <p class="contact_email">jfan@instawork.com</p>
-                        </li>
-                    </div>
-                </a>
-                 <hr>
-                <a href="#">
-                    <div class="contact_section">
-                    <li class="contact_single">
-                        <h3 class="contact_name">Mike Summer</h3>
-                        <p class="contact_number">778-255-3316</p>
-                        <p class="contact_email">msummer@instawork.com</p>
-                    </li>
-                    </div>
-                </a>
-                 <hr>
-
-
+                {% endfor %}
             </ul>
         </section>
 
