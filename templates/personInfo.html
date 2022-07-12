@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Person Information Page</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
@@ -18,23 +20,25 @@
         </header>
         <hr>
 
-        <section class="contact_library">
-            <h3>Info</h3>
-            <!-- <form action="#"> -->
+        <form action="" method="POST">
+            {% csrf_token %}
+            <section class="contact_library">
+                <h3>Info</h3>
+            
                 <div class="contact_form">
-                    <input type="text" placeholder="First Name">
+                    <input type="text" placeholder="First Name" name="firstName">
                 </div>
 
                 <div class="contact_form">
-                    <input type="text" placeholder="Last Name">
+                    <input type="text" placeholder="Last Name" name="lastName">
                 </div>
 
                 <div class="contact_form">
-                    <input type="email" placeholder="Email">
+                    <input type="email" placeholder="Email" name="email">
                 </div>
 
                 <div class="contact_form">
-                    <input type="tel" placeholder="Phone Number">
+                    <input type="tel" placeholder="Phone Number" name="phoneNumber">
                 </div>
 
                 <h3>Role</h3>
@@ -46,13 +50,14 @@
                     <hr>
                     <label for="choice2">Admin - Can delete members</label>
                     <input type="radio" id="choice2" name="role" >
-            <!-- </form> -->
+
                 <hr>
-                <input type="button" class="save_button" value="Save">
+                <input type="submit" class="save_button" value="Save">
 
-            </div>
+                </div>
 
-        </section>
+            </section>
+        </form>
 
     </div>
 </body>
