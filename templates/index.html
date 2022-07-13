@@ -19,12 +19,14 @@
                 <button type="button" class="add_button"> + </button>
             </a>
             <h2>Team Members</h2>
-            <p>You have 4 team members</p>
+
+            <p>You have {{ contacts.count }} team members</p>
         </header>
         <hr>
         <section class="contact_library">
+            {% for contact in contacts reversed %}
+
             <ul class="contact_list">
-                {% for contact in contacts reversed %}
                 <a href="{% url 'edit-contact' contact.id %}">
                     <div class="contact_section">
                         <li class="contact_single">

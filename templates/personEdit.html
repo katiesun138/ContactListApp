@@ -50,7 +50,9 @@
                     <input type="radio" id="choice2" name="role" >
                 <hr>
                 <br>
-                <input type="button" class="delete_button" value="Delete">
+                <a href="{% url 'delete' contact.id %}">
+                    <input type="button" class="delete_button" value="Delete">
+                </a>
                 <input type="submit" class="save_button" value="Save">
             </form>
 

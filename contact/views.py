@@ -13,8 +13,7 @@ def addContact(request):
             last_name = request.POST['lastName'],
             phone_number = request.POST['phoneNumber'],
             email = request.POST['email'],
-            # reg = request.POST['regular'],
-            # adm = request.POST['admin']
+            role = request.POST['roleUser']
         )
         new_contact.save()
         return redirect('/')
@@ -33,4 +32,10 @@ def editContact(request, pk):
 
         return redirect('/')
     return render(request, 'personEdit.html', {'contact': contact})
+
+def deleteContact(request, pk):
+    contact = Contact.objects.get(id=pk)
+    contact.delete()
+    return redirect('/')
+    #return render(request, 'index.html')
 
