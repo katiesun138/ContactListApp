@@ -13,7 +13,7 @@ def addContact(request):
             last_name = request.POST['lastName'],
             phone_number = request.POST['phoneNumber'],
             email = request.POST['email'],
-            role = request.POST['roleUser']
+            # role = request.POST['roleUser']
         )
         new_contact.save()
         return redirect('/')
