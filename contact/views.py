@@ -1,24 +1,34 @@
+from typing import Optional
 from django.shortcuts import render, redirect 
 from .models import Contact
+from django.views import generic
+from django.views.generic.list import ListView
+from .forms import AddForm
+
+
+
+class indexView(ListView):
+    model = Contact
+    template_name: "index.html"
 
 # Create your views here.
 def index(request):
     contacts = Contact.objects.all()
     return render(request, 'index.html', {'contacts': contacts})
 
+#function that allows me to add person's information
 def addContact(request):
-    if request.method == 'POST':
-        new_contact = Contact(
-            first_name = request.POST['firstName'],
-            last_name = request.POST['lastName'],
-            phone_number = request.POST['phoneNumber'],
-            email = request.POST['email'],
-            # role = request.POST['roleUser']
-        )
-        new_contact.save()
-        return redirect('/')
+    form = AddForm()
 
-    return render(request, 'personInfo.html')
+    if request.method == 'POST':
+        form = AddForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('/viewAll')
+
+    context = {'form': form}
+    return render(request, 'personInfo.html', context)
+
 
 def editContact(request, pk):
     contact = Contact.objects.get(id=pk)

@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
 </head>
+{% block content %}
 <body>
     <div class="container">
         <header class="header">
@@ -20,11 +21,11 @@
             </a>
             <h2>Team Members</h2>
 
-            <p>You have {{ contacts.count }} team members</p>
+            <p>You have {{ object_list.count }} team members</p>
         </header>
         <hr>
         <section class="contact_library">
-            {% for contact in contacts reversed %}
+            {% for contact in object_list reversed %}
 
             <ul class="contact_list">
                 <a href="{% url 'edit-contact' contact.id %}">
@@ -38,10 +39,11 @@
                 </a>
                  
                  <hr>
-                {% endfor %}
+                
             </ul>
+            {% endfor %}
         </section>
 
     </div>
 </body>
-</html>
+{% endblock %}
