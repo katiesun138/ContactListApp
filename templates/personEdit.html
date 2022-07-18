@@ -1,17 +1,5 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head> 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Information Page</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
-</head>
+{% extends "base.html" %}
+{% block content %}
 <body>
     <div class="container">
         <header class="header">
@@ -25,34 +13,30 @@
             <form action="" method="POST">
                 {%  csrf_token %}
                 <div class="contact_form">
-                    <input type="text" value="{{contact.first_name | title}}" name="firstName">
+                    {{form.first_name}}
                 </div>
 
                 <div class="contact_form">
-                    <input type="text" value="{{contact.last_name |title}}" name="lastName">
+                    {{form.last_name}}
                 </div>
 
                 <div class="contact_form">
-                    <input type="email" value="{{contact.email}}" name="email">
+                    {{form.email}}
                 </div>
 
                 <div class="contact_form">
-                    <input type="tel" value="{{contact.phone_number}}" name="phoneNumber">
+                    {{form.phone_number}}
                 </div>
 
                 <h3>Role</h3>
                 <div class="input_info">
 
-                    <label for="choice1">Regular - Can't delete members</label>
-                    <input type="radio" id="choice1" name="role">
-                        
+                    {{form.id}}
+                    
                     <hr>
-                    <label for="choice2">Admin - Can delete members</label>
-                    <input type="radio" id="choice2" name="role" >
-                <hr>
                 <br>
-                <a href="{% url 'delete' contact.id %}">
-                    <input type="button" class="delete_button" value="Delete">
+                <a href="{% url 'delete-contact' form.id %}">                
+                    <button class="delete_button">Delete</button>
                 </a>
                 <input type="submit" class="save_button" value="Save">
             </form>
@@ -63,4 +47,4 @@
 
     </div>
 </body>
-</html>
+{% endblock %}

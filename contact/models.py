@@ -12,7 +12,7 @@ role_choice=[
 
 # Create your models here.
 class Contact(models.Model):
-    first_name = models.CharField(max_length=500, null=True)
+    first_name = models.CharField(max_length=500)
     last_name = models.CharField(max_length=500)
     phone_number = models.CharField(max_length=20)
     email = models.EmailField(max_length=255)

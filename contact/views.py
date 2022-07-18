@@ -1,3 +1,4 @@
+from multiprocessing import context
 from typing import Optional
 from django.shortcuts import render, redirect 
 from .models import Contact
@@ -22,10 +23,10 @@ def addContact(request):
 
     if request.method == 'POST':
         form = AddForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
+            print("form is REALL VALID")
             form.save()
             return redirect('/viewAll')
-
     context = {'form': form}
     return render(request, 'personInfo.html', context)
 
@@ -33,19 +34,18 @@ def addContact(request):
 def editContact(request, pk):
     contact = Contact.objects.get(id=pk)
 
+    form = AddForm(instance=contact)
+    
     if request.method == 'POST':
-        contact.first_name = request.POST['firstName']
-        contact.last_name = request.POST['lastName']
-        contact.phone_number = request.POST['phoneNumber']
-        contact.email = request.POST['email']
-        contact.save()
-
-        return redirect('/')
-    return render(request, 'personEdit.html', {'contact': contact})
+        form = AddForm(request.POST, instance=contact)
+        if form.is_valid():
+            form.save()
+            return redirect('/viewAll')
+    return render(request, 'personEdit.html', {'form': form})
 
 def deleteContact(request, pk):
     contact = Contact.objects.get(id=pk)
     contact.delete()
-    return redirect('/')
+    return redirect('/viewAll')
     #return render(request, 'index.html')
 
