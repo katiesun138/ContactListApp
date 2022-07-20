@@ -31,14 +31,17 @@
                 <h3>Role</h3>
                 <div class="input_info">
 
-                    {{form.id}}
-                    
+                    {{form.role}}
+
                     <hr>
                 <br>
-                
                 <input type="submit" class="save_button" value="Save">
-            </form>
 
+            </form>
+            <a href="{% url 'delete-contact' form.instance.id %}">                
+                <button class="delete_button">Delete</button>
+            </a>
+            
             </div>
 
         </section>

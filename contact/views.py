@@ -40,12 +40,15 @@ def editContact(request, pk):
         form = AddForm(request.POST, instance=contact)
         if form.is_valid():
             form.save()
+            #deleteContact(request, pk)
             return redirect('/viewAll')
+    print("delete pressed but still in edit")
     return render(request, 'personEdit.html', {'form': form})
 
 def deleteContact(request, pk):
     contact = Contact.objects.get(id=pk)
     contact.delete()
-    return redirect('/viewAll')
-    #return render(request, 'index.html')
+
+    # return redirect('/edit-contact')
+    return render(request, 'index.html')
 
